@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: loadbalancer-pod
+spec:
+ selector:
+   matchLabels:
+     run: loadbalancer-pod
+ replicas: 1
+ template:
+   metadata:
+     labels:
+       run: loadbalancer-pod
+   spec:
+     containers:
+     - name: loadbalancer-pod
+       image: dinesh4303/zocketimage:latest
+       ports:
+       - containerPort: 80
+       resources:
+         limits:
+           cpu: 500m
+         requests:
+           cpu: 200m
+...
